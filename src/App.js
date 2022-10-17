@@ -1,9 +1,15 @@
 import { Fragment } from "react";
 
+import Header from "./components/Header";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+
 function App() {
   return (
     <Fragment>
-      <h1>Hello World</h1>
+      <Header />
+      <SignIn />
+      {/* <SignUp /> */}
     </Fragment>
   );
 }

@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 
 function App() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const createAccount = useSelector(state => state.auth.createAccount);
 
   const dispatch = useDispatch();
 
@@ -18,9 +19,8 @@ function App() {
   return (
     <Fragment>
       <Header />
-      {!isLoggedIn && <SignIn />}
+      {!isLoggedIn && (!createAccount ? <SignIn /> : <SignUp />)}
       {isLoggedIn && <div><h1>Welcome user!</h1><button onClick={logoutHandler}>Logout</button></div>}
-      {/* <SignUp /> */}
     </Fragment>
   );
 }

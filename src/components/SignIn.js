@@ -27,7 +27,21 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+      },
+      palette: {
+        primary: {
+          main: '#5e5b78',
+          darker: '#292b46',
+        },
+        neutral: {
+          main: '#fba450',
+          contrastText: '#fff',
+        }
+    }
+});
 
 let userInfo = { email: 'test@msfix.com', password: '12345'};
 
@@ -43,6 +57,10 @@ const SignIn = () => {
         }else {
             alert('wrong data');
         }
+    };
+
+    const changeFormHandler = () => {
+        dispatch(authActions.switchFrom());
     };
 
   const handleSubmit = (event) => {
@@ -66,7 +84,7 @@ const SignIn = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#292b46' }}>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -96,6 +114,7 @@ const SignIn = () => {
             <Button
               type="submit"
               fullWidth
+              color='neutral'
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={loginHandler}
@@ -104,8 +123,8 @@ const SignIn = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account - Sign Up"}
+                <Link href="#" color='#5e5b78' variant="body2" onClick={changeFormHandler}>
+                  Create an account
                 </Link>
               </Grid>
             </Grid>

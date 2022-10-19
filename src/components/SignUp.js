@@ -10,6 +10,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/slices/authSlice';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -23,9 +26,30 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+      },
+      palette: {
+        primary: {
+          main: '#5e5b78',
+          darker: '#292b46',
+        },
+        neutral: {
+          main: '#fba450',
+          contrastText: '#fff',
+        }
+    }
+});
 
 const SignUp = () => {
+
+    const dispatch = useDispatch();
+
+    const changeFormHandler = () => {
+        dispatch(authActions.switchFrom());
+    };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -47,7 +71,7 @@ const SignUp = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#292b46' }}>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -62,7 +86,6 @@ const SignUp = () => {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -100,15 +123,16 @@ const SignUp = () => {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
+              color='neutral'
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account - Sign in
+                <Link href="#" color='#5e5b78' variant="body2" onClick={changeFormHandler}>
+                  Already have an account
                 </Link>
               </Grid>
             </Grid>

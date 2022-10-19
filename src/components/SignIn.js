@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/slices/authSlice';
 import { useState } from 'react';
+import { loginUser } from '../store/thunks/auth-thunks';
 
 function Copyright(props) {
   return (
@@ -43,7 +44,7 @@ const theme = createTheme({
     }
 });
 
-let userInfo = { email: 'test@msfix.com', password: '12345'};
+// let userInfo = { email: 'test@msfix.com', password: '123456'};
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -52,11 +53,7 @@ const SignIn = () => {
     const dispatch = useDispatch();
 
     const loginHandler = (e) => {
-        if(email === userInfo.email && password === userInfo.password){
-            dispatch(authActions.login());
-        }else {
-            alert('wrong data');
-        }
+        dispatch(loginUser({ email, password }));
     };
 
     const changeFormHandler = () => {

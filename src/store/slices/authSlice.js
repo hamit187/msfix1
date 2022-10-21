@@ -13,7 +13,7 @@ const authSlice = createSlice({
         logout(state){
             state.isLoggedIn = false;
         },
-        switchFrom(state){
+        switchForm(state){
             state.createAccount = !state.createAccount;
         }
     }

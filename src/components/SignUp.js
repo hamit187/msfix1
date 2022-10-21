@@ -10,8 +10,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/slices/authSlice';
+import { createUser } from '../store/thunks/auth-thunks';
 
 function Copyright(props) {
   return (
@@ -43,20 +45,33 @@ const theme = createTheme({
 });
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
 
+    const createAccountHandler = () => {
+      if(!email || email.trim().length < 5 || !email.includes('@')){
+        alert('Invalid email!');
+        return;
+      }
+
+      if(!password || password.trim().length < 6){
+        alert('Password needs to be at least 6 characters long!');
+        return;
+      }
+
+      dispatch(createUser({ email, password }));
+      // console.log('email: ' + email + ' password: ' + password);
+    };
+
     const changeFormHandler = () => {
-        dispatch(authActions.switchFrom());
+        dispatch(authActions.switchForm());
     };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   return (
@@ -82,7 +97,6 @@ const SignUp = () => {
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -90,7 +104,6 @@ const SignUp = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -105,7 +118,7 @@ const SignUp = () => {
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
+                  onChange={(e) => {setEmail(e.target.value)}}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -116,7 +129,7 @@ const SignUp = () => {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
+                  onChange={(e) => {setPassword(e.target.value)}}
                 />
               </Grid>
             </Grid>
@@ -126,6 +139,7 @@ const SignUp = () => {
               color='neutral'
               variant='contained'
               sx={{ mt: 3, mb: 2 }}
+              onClick={createAccountHandler}
             >
               Sign Up
             </Button>

@@ -15,6 +15,9 @@ const authSlice = createSlice({
         },
         switchForm(state){
             state.createAccount = !state.createAccount;
+        },
+        autoLogin(state){
+            state.isLoggedIn = true;
         }
     }
 });

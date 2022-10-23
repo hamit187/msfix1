@@ -1,0 +1,15 @@
+.section {
+    background-image: url('../img/background.jpg');
+    height: 95vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & h1 {
+        color: #fff;
+        font-size: 12rem;
+    }
+}

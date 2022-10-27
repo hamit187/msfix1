@@ -14,12 +14,16 @@ const Header = () => {
     localStorage.removeItem("Token");
   };
 
+  const toggleProfileHandler = () => {
+    dispatch(authActions.toggleProfile());
+  };
+
   return (
     <Fragment>
       <div className={classes.header}>
         <div className={classes.logo}>MsFix</div>
         {isLoggedIn && <div className={classes.btn}>
-          <button>Profile</button>
+          <button onClick={toggleProfileHandler}>Profile</button>
           <button onClick={logoutHandler}>Logout</button>
         </div>}
       </div>

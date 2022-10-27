@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState = { isLoggedIn: false, idToken: '', createAccount: false };
+const initialAuthState = { isLoggedIn: false, idToken: '', createAccount: false, profile: false };
 
 const authSlice = createSlice({
     name: 'auth',
@@ -18,6 +18,9 @@ const authSlice = createSlice({
         },
         autoLogin(state){
             state.isLoggedIn = true;
+        },
+        toggleProfile(state){
+            state.profile = !state.profile;
         }
     }
 });

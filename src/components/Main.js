@@ -7,12 +7,14 @@ const Main = () => {
 
     return (
         <Fragment>
+            <div className={classes.section}>
             {!profile && <div className={classes.main}>
                 <h1>Welcome!</h1>
             </div>}
             {profile && <div className={classes.profile}>
                 <p>User Email</p>
             </div>}
+            </div>
         </Fragment>
     );
 };

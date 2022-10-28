@@ -20,7 +20,7 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
         },
         toggleProfile(state){
-            state.profile = !state.profile;
+            state.profile = true;
         }
     }
 });

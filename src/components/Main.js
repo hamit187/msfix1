@@ -12,7 +12,12 @@ const Main = () => {
                 <h1>Welcome!</h1>
             </div>}
             {profile && <div className={classes.profile}>
-                <p>User Email</p>
+                <h2>Profile</h2>
+                <div className={classes.password}>
+                <p>Change Password</p>
+                <input placeholder='New password' type='password' />
+                <button>Change</button>
+                </div>
             </div>}
             </div>
         </Fragment>
